@@ -1,28 +1,50 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 
 class Timeline extends StatefulWidget {
-  const Timeline({super.key});
+  const Timeline({super.key,
+    required this.CoordinateData,
+    //required this.Longitude,
+  });
+  final void Function(List<Map<String, double>>) CoordinateData;
 
   @override
   State<Timeline> createState() => _TimelineState();
 }
 
 class _TimelineState extends State<Timeline> {
-  // double width = 0.0;
-  // double height = 0.0;
-  // late ScrollController scrollController;
-  // List<DateTime> currentMonthList = List.empty();
-  // DateTime currentDateTime = DateTime.now();
-  // List<String> todos = <String>[];
-  // TextEditingController controller = TextEditingController();
-  //
-  // final List<String> months = [
-  //   'January', 'February', 'March', 'April', 'May', 'June',
-  //   'July', 'August', 'September', 'October', 'November', 'December'
-  // ];
-  //
-  // final List<int> years = [2017, 2018, 2019, 2020, 2021, 2022, DateTime.now().year];
+
+  List<Map<String, double>> dummyData1 = [
+    {"longitude": 24.872132, "latitude": 13.856387},
+    {"longitude": 25.777354, "latitude": 14.848181},
+    {"longitude": 25.062602, "latitude": 13.651790},
+    {"longitude": 23.787669, "latitude": 14.892949},
+    {"longitude": 22.937620, "latitude": 13.123400},
+    {"longitude": 24.866939, "latitude": 15.082518},
+    {"longitude": 23.760173, "latitude": 14.231397},
+    {"longitude": 23.124563, "latitude": 13.409436},
+    {"longitude": 22.808965, "latitude": 14.586475},
+    {"longitude": 22.471954, "latitude": 13.319347},
+  ];
+
+  List<Map<String, double>> dummyData2 = [
+    {"longitude": 25.872132, "latitude": 13.856387},
+    {"longitude": 22.777354, "latitude": 14.848181},
+    {"longitude": 23.062602, "latitude": 13.651790},
+    {"longitude": 24.787669, "latitude": 14.892949},
+    {"longitude": 23.937620, "latitude": 13.123400},
+    {"longitude": 23.866939, "latitude": 15.082518},
+    {"longitude": 24.760173, "latitude": 14.231397},
+    {"longitude": 23.124563, "latitude": 13.409436},
+    {"longitude": 25.808965, "latitude": 14.586475},
+    {"longitude": 23.471954, "latitude": 13.319347},
+  ];
+
+  List<List<Map<String, double>>> listOfLists = List.empty();
+  int value = 0;
+
 
   List<int> selectedMonths = List.generate(84, (index) => -1); // -1 means unselected
 
@@ -32,7 +54,7 @@ class _TimelineState extends State<Timeline> {
     'September', 'October', 'November', 'December'
   ];
 
-  void _selectMonth(int yearIndex, int monthIndex) {
+   _selectMonth(int yearIndex, int monthIndex) {
     setState(() {
       // Reset the selected state for all months in the same year
       for (int i = 0; i < months.length; i++) {
@@ -44,13 +66,27 @@ class _TimelineState extends State<Timeline> {
       // Toggle the selected state for the clicked month
       selectedMonths[yearIndex * months.length + monthIndex] =
       selectedMonths[yearIndex * months.length + monthIndex] == -1 ? yearIndex : -1;
+
+      final random = Random();
+
+      // Define the range for the random number (inclusive)
+      int min = 0; // Minimum value
+      int max = 1; // Maximum value
+
+      // Generate a random number within the specified range
+      int randomNumber = min + random.nextInt(max - min + 1);
+
+      value= randomNumber;
+      //return randomNumber;
     });
+
   }
 
 
 
 
   Widget MonthShow() {
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       reverse: true,
@@ -67,8 +103,11 @@ class _TimelineState extends State<Timeline> {
                         GestureDetector(
                           onTap: () {
                             _selectMonth(yearIndex, monthIndex);
-                            print(months.length);
-                            print(monthIndex);
+                            setState(() {
+                              widget.CoordinateData(listOfLists[value]);
+                            });
+
+
                           },
                           child: Container(
                             width: 80, // Adjust the width as needed
@@ -111,6 +150,12 @@ class _TimelineState extends State<Timeline> {
 
   @override
   Widget build(BuildContext context) {
+    //widget.CoordinateData(dummyData1);
+    listOfLists = [
+      dummyData1,
+      dummyData2
+    ];
+
    // width = MediaQuery.of(context).size.width;
    // height = MediaQuery.of(context).size.height;
     return MonthShow();

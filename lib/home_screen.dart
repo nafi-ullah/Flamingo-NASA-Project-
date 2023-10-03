@@ -8,11 +8,19 @@ class Home_Screen extends StatefulWidget {
   @override
   State<Home_Screen> createState() => _Home_ScreenState();
 }
-void ExecuteTimeline(){
 
-}
 
 class _Home_ScreenState extends State<Home_Screen> {
+  List<Map<String, double>> CoOrdinateMain = List.empty() ;
+
+  void CoOrdinates(List<Map<String, double>> MyAxis){
+setState(() {
+  CoOrdinateMain = MyAxis;
+});
+     CoOrdinateMain = MyAxis;
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +31,7 @@ class _Home_ScreenState extends State<Home_Screen> {
     body: Stack(
     children: <Widget>[
     // Other widgets in the Stack
-      MapScreen(),
+      MapScreen(dummyData: CoOrdinateMain),
     Positioned(
     bottom: 20.0, // Place the widget at the bottom
     left: 0.0, // You can adjust the left/right positioning as needed
@@ -31,7 +39,7 @@ class _Home_ScreenState extends State<Home_Screen> {
         width: 360,
         height: 50,
         color: Colors.black26,
-      child: Timeline(),
+      child: Timeline(CoordinateData: CoOrdinates,),
     ), // Replace with your widget
     ),
     ],
