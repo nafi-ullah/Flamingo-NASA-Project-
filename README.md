@@ -56,6 +56,9 @@ We've implemented a three-tier sensory alert system to notify potentially affect
 
 Moreover, in critical situations, our on-ground monitoring device will produce an ultrasound signal to alert animals in the forest eventually.
 
+![Altert Demo](assets/images/alert.gif)
+*Fig: Alert Demo*
+
 #### 4. Community Reporting
 
 We encourage local residents to actively participate in wildfire reporting. Their reports are validated using NASA's live satellite data, enhancing the accuracy of our system. Community involvement is crucial in providing real-time information from the ground, complementing satellite-based detection.
@@ -63,6 +66,11 @@ We encourage local residents to actively participate in wildfire reporting. Thei
 #### 5. 3D Visual Display
 
 To make our system more appealing and informative, we've integrated a 3D visual effect within the app. This feature displays probable fire locations over time, helping users visualize the progression and potential impact of wildfires in their vicinity.
+
+#### App Demo 1
+ 
+![Device Circuit Diagram](assets/images/appdemo1.gif)
+*Fig: Fire Map, 3D Map View and Alert UI Demo*
 
 #### 6. Community Forum
 
@@ -77,6 +85,12 @@ To assist in critical situations, we've developed an AI chatbot that can provide
 For those in areas with no network connectivity, our system sends radio alerts to the affected area, providing vital information about the wildfire's location and safety recommendations.
 
 [Link to our Radio Alert UI](https://tinyurl.com/project-flamingo-radio)
+
+#### App Demo 2
+ 
+![Demo of Forum, SOS and AI ChatBot](assets/images/appdemo2.gif)
+*Fig: Demo of Forum, SOS and AI ChatBot*
+
 
 ## What Impact Does It Have?
 
